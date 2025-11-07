@@ -41,3 +41,20 @@ string encontrar_maior_palavra(string frase) {
 
     return maior;
 }
+
+/* TESTES DA FUNÇÃO encontrar_maior_palavra*/
+#include <cassert>
+
+void teste_encontrar_maior_palavra() {
+    assert(encontrar_maior_palavra("A maior palavra aqui é extraordinariamente!") == "extraordinariamente");
+    assert(encontrar_maior_palavra("Teste, com pontuação.") == "pontuação");
+    assert(encontrar_maior_palavra("Igual tamanho aqui") == "tamanho");
+    assert(encontrar_maior_palavra("Uma frase simples") == "simples");
+    assert(encontrar_maior_palavra("Palavras: curtas, médias, longas!") == "longas");
+}
+
+/* MAIN PARA EXECUTAR OS TESTES */
+int main() {
+    teste_encontrar_maior_palavra();
+    return 0;
+}
