@@ -26,18 +26,31 @@ bool sao_anagramas(string string1, string string2) {
 }
 
 string cifra_de_cesar(string texto, int deslocamento) {
-    return texto;
+    string resultado = "";
+
+    for (int i = 0; i < texto.length(); i++) {
+        char c = texto[i];
+        if (isalpha(c)) { // apenas letras
+            char base = islower(c) ? 'a' : 'A'; 
+            c = (c - base + deslocamento) % 26 + base;
+        }
+        resultado += c;
+    }
+
+    return resultado;
 }
 
-bool valida_cpf(string cpf) {
-    return true;
+string encontrar_maior_palavra(string frase) {
+    return frase;
 }
 
 int main() {
     // testando a função de anagramas
     cout << sao_anagramas("roma", "amor") << endl;
 
-    
+    // testando a função de cifra de César
+    cout << cifra_de_cesar("Ataque ao Amanhecer!", 5) << endl;
+
     return 0;
 }
 
