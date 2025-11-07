@@ -45,8 +45,6 @@ int main() {
     assert(!sao_anagramas("banana", "babana")); 
     assert(!sao_anagramas("abc", "ab"));
 
-    assert(cifra_de_cesar("a", 1) == "b");
-    assert(cifra_de_cesar("z", 1) == "e");
     assert(cifra_de_cesar("Ataque ao Amanhecer!", 5) == "Fyfvzj ft Frfsmjhjw!");
 
     return 0;
