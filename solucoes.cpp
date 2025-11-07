@@ -1,4 +1,6 @@
 #include <string>
+#include <iostream>
+#include <cctype>
 using namespace std;
 
 bool sao_anagramas(string string1, string string2) {
@@ -20,22 +22,30 @@ string encontrar_maior_palavra(string frase) {
 
     // Percorre a frase de trás para frente para identificar as palavras que vêm primeiro por último e se adequar ao requisito de em caso de empate retornar a que aparece primeiro na frase.
     for(int i = tamanho_frase; i >= 0; i--) {
-
         // Remove pontuações do tamanho da frase.
-        if(frase[i] == ',' || frase[i] == '.' || frase[i] == '!' || frase[i] == '?' ) {
+        if(ispunct(frase[i]) ) {
             tamanho_frase--;
+            continue;
         }
 
         // Verifica se é um espaço ou o início da frase para identificar o fim de uma palavra.
         if(frase[i] == ' ' || i == 0) {
+
+            // Ignora espaços consecutivos.
+            if((frase[i-1] == ' ' && i != 0) || (i == 0 && frase[i] == ' ')) {
+                tamanho_frase--;
+                continue;
+            }
+
+            // Extrai a palavra atual.
             int inicio_palavra = (i == 0) ? 0 : i + 1;
             int tamanho_palavra = tamanho_frase - inicio_palavra;
             string palavra_atual = frase.substr(inicio_palavra, tamanho_palavra);
-            if(palavra_atual.size() > maior_tamanho) {
+            if(palavra_atual.size() >= maior_tamanho) {
                 maior = palavra_atual;
                 maior_tamanho = palavra_atual.size();
             }
-            tamanho_frase = i - 1;
+            tamanho_frase = i;
         }
     }
 
@@ -46,11 +56,30 @@ string encontrar_maior_palavra(string frase) {
 #include <cassert>
 
 void teste_encontrar_maior_palavra() {
+    // Testes Iniciais
     assert(encontrar_maior_palavra("A maior palavra aqui é extraordinariamente!") == "extraordinariamente");
     assert(encontrar_maior_palavra("Teste, com pontuação.") == "pontuação");
     assert(encontrar_maior_palavra("Igual tamanho aqui") == "tamanho");
     assert(encontrar_maior_palavra("Uma frase simples") == "simples");
-    assert(encontrar_maior_palavra("Palavras: curtas, médias, longas!") == "longas");
+    assert(encontrar_maior_palavra("Palavras: curtas, médias, longas!") == "Palavras");
+
+    // Casos Extremos
+    assert(encontrar_maior_palavra("") == "");
+    assert(encontrar_maior_palavra("     ") == "");
+    assert(encontrar_maior_palavra("A") == "A");
+    assert(encontrar_maior_palavra("A B C D E F G") == "A");
+
+    // Casos Específicos
+    assert(encontrar_maior_palavra("Eu gosto de banana e cereja") == "banana");
+
+    // Somente pontuações
+    assert(encontrar_maior_palavra("?!.,;:@#$%&*()") == "");
+    assert(encontrar_maior_palavra("O ano é 2025 agora") == "agora"); 
+
+    // Junto com números
+    assert(encontrar_maior_palavra("Senha forte: p4ssw0rd!") == "p4ssw0rd");
+    assert(encontrar_maior_palavra("azul . vermelho") == "vermelho");
+    assert(encontrar_maior_palavra("avô avó") == "avô");
 }
 
 /* MAIN PARA EXECUTAR OS TESTES */
