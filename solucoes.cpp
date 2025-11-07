@@ -1,6 +1,7 @@
 #include <string>
 #include <iostream>
 #include <cctype>
+#include <cassert>
 using namespace std;
 
 bool sao_anagramas(string string1, string string2) {
