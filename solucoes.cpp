@@ -1,5 +1,6 @@
 #include <string>
 #include <set>
+#include <iostream>
 
 using namespace std;
 
@@ -20,7 +21,7 @@ bool sao_anagramas(string string1, string string2) {
             return false; // char na string2 não encontrado na string1
         }
     }
-    
+
     return true;
 }
 
@@ -31,3 +32,12 @@ string cifra_de_cesar(string texto, int deslocamento) {
 bool valida_cpf(string cpf) {
     return true;
 }
+
+int main() {
+    // testando a função de anagramas
+    cout << sao_anagramas("roma", "amor") << endl;
+
+    
+    return 0;
+}
+
