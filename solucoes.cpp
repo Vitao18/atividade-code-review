@@ -53,7 +53,6 @@ string encontrar_maior_palavra(string frase) {
 }
 
 /* TESTES DA FUNÇÃO encontrar_maior_palavra*/
-#include <cassert>
 
 void teste_encontrar_maior_palavra() {
     // Testes Iniciais
